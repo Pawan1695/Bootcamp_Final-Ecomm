@@ -1,0 +1,32 @@
+.container-fluid{
+    background:burlywood;
+}
+
+.nav, h1{
+    line-height: 40px;
+    font-weight: 500;
+}
+
+.nav .nav-item a{
+    color: black;
+}
+
+.nav button{
+    opacity: 0.8;
+}
+
+.nav .nav-item a:hover{
+    color: blue;
+    background: none;
+}
+
+.nav .nav-item button:hover{
+    opacity: 1;
+}
+
+
+@media screen and (max-width: 770px){
+    .nav > li > a{
+        padding: 10px 5px;
+    }
+}

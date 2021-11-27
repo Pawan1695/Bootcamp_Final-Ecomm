@@ -1,0 +1,48 @@
+.checked {
+    color: orange;
+  }
+
+.product-image img{
+    width: 20vw;
+    /* height: 30vh; */
+    margin: auto;
+ 
+}
+
+.small-img-group{
+    display: flex;
+    justify-content: space-between;
+}
+
+.small-img-col{
+    flex-basis: 24%;
+    cursor: pointer;
+    border: 1px solid #cdcccc;
+    margin: auto;
+}
+
+  .price p, .desc p{
+      font-size: 18px;
+      /* line-height: 28px; */
+    }
+
+    button{
+        width: 30%;
+    }
+
+    .user{
+        border: 1px solid;
+        border-radius: 50%;
+        width: 3vw;
+        height: 5vh;
+        margin-right:20px ;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .rev{
+        margin-bottom:20px ;
+        display: flex;
+        align-items: center;
+    }

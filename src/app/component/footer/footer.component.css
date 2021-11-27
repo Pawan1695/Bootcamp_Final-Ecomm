@@ -1,0 +1,36 @@
+ .container-fluid{
+    background:black;
+    
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #bb3c53db;
+    text-align: center;
+    z-index: 1;
+ }
+
+.nav, h1{
+    line-height: 40px;
+    font-weight: 500;
+}
+
+.nav .nav-item a{
+    color: #fff;
+}
+
+.nav .nav-item a:hover{
+    color: blue;
+    background: none;
+}
+
+
+
+@media screen and (max-width: 770px){
+    .nav > li > a{
+        padding: 10px 5px;
+    }
+}

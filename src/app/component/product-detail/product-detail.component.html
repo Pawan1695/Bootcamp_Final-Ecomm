@@ -1,0 +1,90 @@
+<div class="container mb-5">
+    <div class="row mt-5 pt-5">
+        <div class="card col-md-5 col-xs-12" style="height: 100%;">
+            <div class="product-image  mx-4 pt-4">
+            <img src="{{product.image}}" class="img-fluid img-responsive" alt="" >
+        </div>
+                <!-- <div class="small-img-group py-4">
+                    <div class="small-img-col">
+                        <img src="https://s3.ap-south-1.amazonaws.com/rzp-prod-merchant-assets/payment-link/description/jpeg_DKSTQGzPx5U6zM.jpg" alt="" class="small=img" style="width: 100%;">
+                    </div>
+                    <div class="small-img-col">
+                        <img src="https://s3.ap-south-1.amazonaws.com/rzp-prod-merchant-assets/payment-link/description/jpeg_DKSTQGzPx5U6zM.jpg" alt="" class="small=img" style="width: 100%;">
+                    </div>
+                    <div class="small-img-col">
+                        <img src="https://s3.ap-south-1.amazonaws.com/rzp-prod-merchant-assets/payment-link/description/jpeg_DKSTQGzPx5U6zM.jpg" alt="" class="small=img" style="width: 100%;">
+                    </div>
+                </div> -->
+
+        
+        </div>
+
+        <div class="col-md-7 col-xs-12">
+            <div class="product_details mx-4">
+                <h2>{{product.title}}</h2>
+                <p class="pl-3"><span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="mx-3"> 5 reviews</span>
+                </p>      
+                <hr>
+                <div class="price d-flex justify-content-between">
+                    <p><strong>&#8377;</strong>{{product.price}}</p>
+                    
+                    <form>            
+                        <select required (change)="changeModel($event,product.id)">
+                            <option value="">--Choose Color--</option>
+                            <option *ngFor="let colors of color" value="{{colors}}" >{{ colors }}</option>
+                        </select>
+                    </form> 
+                </div>
+                <hr>
+                <div class="desc mb-5">
+                    <p>{{product.description}}</p>
+                </div>
+                <button class="btn btn-primary mt-5" (click)="addtoCart(product)">Add To Cart</button>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row mt-2 pt-2">
+        <h2>Reviews</h2>
+        <div class="col-md-12 col-xs-12">
+            <div class="reviewers">
+                <div class="row">
+                    <div class="col-md-4  rev">
+                        <div class="user">
+                            <i class="fa fa-user" style="font-size:24px"></i>
+                        </div>
+                        <span>
+                        <h4>JOHN DOE</h4>
+                        <h5>august 14,2018</h5>
+                    </span>
+                    </div>
+
+                    <div class="col-md-8">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel temporibus explicabo facere laudantium, laboriosam ab nostrum necessitatibus fugit rerum modi tenetur, quia obcaecati magni cumque provident maiores deleniti totam assumenda?</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 rev">
+                        <div class="user">
+                            <i class="fa fa-user" style="font-size:24px"></i>
+                        </div>
+                        <span>
+                            <h4>JOHN DOE</h4>
+                            <h5>august 14,2018</h5>
+                        </span>
+                    </div>
+
+                    <div class="col-md-8">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque cum saepe, ea qui consectetur cumque rem nam delectus asperiores totam modi fugiat. Adipisci dolorum aut exercitationem repudiandae ad cupiditate quos?</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    

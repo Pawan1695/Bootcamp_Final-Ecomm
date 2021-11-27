@@ -1,0 +1,161 @@
+<form [formGroup]="shippingDetails" (ngSubmit)="onSubmit()">
+  <div class="card p-4">
+    <h2 class="py-4 font-weight-bold">Shipping Details</h2>
+    <hr />
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <input
+          type="text"
+          class="form-control"
+          formControlName="first"
+          id="inputEmail4"
+          placeholder="First Name"
+        />
+        <small
+          *ngIf="
+            !shippingDetails.get('first').valid &&
+            shippingDetails.get('first').touched
+          "
+          >Please Enter Name</small
+        >
+      </div>
+
+      <div class="form-group col-md-6">
+        <input
+          type="text"
+          class="form-control"
+          id="inputPassword4"
+          formControlName="last"
+          placeholder="Last Name"
+        />
+      </div>
+    </div>
+    <div class="form-group col-md-12">
+      <input
+        type="text"
+        class="form-control"
+        id="inputAddress"
+        formControlName="address"
+        placeholder="Address 1"
+      />
+      <small
+        *ngIf="
+          !shippingDetails.get('address').valid &&
+          shippingDetails.get('address').touched
+        "
+        >Please Enter Address</small
+      >
+    </div>
+    <div class="form-group col-md-12">
+      <input
+        type="text"
+        class="form-control"
+        id="inputAddress2"
+        formControlName="address2"
+        placeholder="Address 2"
+      />
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <select
+          id="inputCountry"
+          class="form-control"
+          placeholder="Country"
+          formControlName="country"
+        >
+          <option value="India" selected>India</option>
+          <option value="Paksitan">New York</option>
+        </select>
+      </div>
+      <div class="form-group col-md-6">
+        <input
+          type="text"
+          class="form-control"
+          formControlName="city"
+          placeholder="City"
+          id="inputCity"
+        />
+        <small
+          *ngIf="
+            !shippingDetails.get('city').valid &&
+            shippingDetails.get('city').touched
+          "
+          >Please Enter City</small
+        >
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Zip/Postal Code"
+          pattern="[0-9]{6}"
+          formControlName="zip"
+          id="inputZip"
+        />
+        <small
+          *ngIf="
+            !shippingDetails.get('zip').valid &&
+            shippingDetails.get('zip').touched
+          "
+          >Please Enter Zip/Postal Code</small
+        >
+      </div>
+      <div class="form-group col-md-6">
+        <input
+          type="tel"
+          class="form-control"
+          placeholder="Phone Number"
+          pattern="[0-9]{10}"
+          formControlName="phone"
+          id="inputPhone"
+        />
+        <small
+          *ngIf="
+            !shippingDetails.get('phone').valid &&
+            shippingDetails.get('phone').touched
+          "
+          >Please Enter Phone Number</small
+        >
+      </div>
+    </div>
+
+    <div class="form-row shipDeta d-flex justify-content-between">
+      <div class="form-group col-md-6 shipping">
+        <input
+          type="radio"
+          name="shipping"
+          value="0"
+          formControlName="shipping"
+          (change)="freeshipping()"
+        />
+        &nbsp;
+        <label for="free">Free Shipping </label>
+        <p>Between 2-5 working Days</p>
+      </div>
+      <div class="form-group col-md-6 shipping">
+        <input
+          type="radio"
+          name="shipping"
+          value="20"
+          formControlName="shipping"
+          (change)="paidshipping()"
+        />
+        &nbsp;
+        <label for="paid">Next Day Delivery - &#8377; 20</label>
+        <p>24 hours from checkout</p>
+      </div>
+    </div>
+  </div>
+  <button
+    type="submit"
+    [disabled]="!shippingDetails.valid"
+    class="btn btn-primary mb-3 mx-4"
+  >
+    Place Order
+  </button>
+  <button type="button" class="btn btn-danger mb-3" (click)= "backToCart()">Cancel</button>
+</form>

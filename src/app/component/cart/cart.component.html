@@ -1,0 +1,263 @@
+<ng-container *ngIf="product.length == 0">
+  <div class="container shadow">
+    <div class="card empty">
+      <h3 class="card-title">My Cart</h3>
+    </div>
+    <div class="center">
+      <img
+        src="https://constant.myntassets.com/checkout/assets/img/empty-bag.webp"
+        alt="Cart Empty"
+      />
+      <h4>Your Cart Is Empty</h4>
+      <h6>Add Item to It Now</h6>
+      <button class="btn btn-primary" routerLink="/home">SHOP NOW</button>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="product.length != 0">
+  <div class="container">
+    <div class="row">
+      <ul class="nav d-flex mt-5 mb-5 justify-content-center">
+        <div class="col-md-3 col-xs-4">
+          <li class="nav-item">
+            <a 
+              class="nav-item"
+              [className]="process == 1 ? 'active' : ' '"
+              >1. Shopping Cart</a
+            >
+          </li>
+        </div>
+        <div class="col-md-3 col-xs-4">
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              [className]="process == 2 ? 'active' : ' '"
+              >2. Shipping Details</a
+            >
+          </li>
+        </div>
+
+        <div class="col-md-3 col-xs-4">
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              [className]="process == 3 ? 'active' : ' '"
+              >3. Payment Options</a
+            >
+          </li>
+        </div>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-10 col-11 mx-auto">
+        <div class="row mt-5 gx-3 d-block" style="margin-bottom: 15%">
+          <!-- shopping cart -->
+
+          <div
+            class="
+              col-md-12 col-lg-8 col-11
+              mx-auto
+              main_cart
+              mb-lg-0 mb-2
+              shadow
+            "
+            *ngIf="process == 1"
+          >
+            <form [formGroup]="cartDetails" (ngSubmit)="onSubmit()">
+              <div class="card p-4">
+                <h2 class="py-4 font-weight-bold">Shopping Cart</h2>
+                <div
+                  class="row mt-5"
+                  *ngFor="let item of product; let i = index"
+                >
+                  <!-- cart Image Details -->
+                  <div
+                    class="
+                      col-md-5 col-11
+                      mx-auto
+                      bg-light
+                      d-flex
+                      justify-content-center
+                      align-items-center
+                      shadow
+                      product_img
+                    "
+                  >
+                    <img
+                      src="{{ item.productImage }}"
+                      class="img-fluid"
+                      alt="cart_image"
+                    />
+                  </div>
+
+                  <!-- cart product details -->
+
+                  <div class="col-md-7 col-11 mx-auto px-4 mt-2">
+                    <div class="row">
+                      <!-- product name -->
+                      <div class="col-6 card-title">
+                        <h1 class="mb-4 product_name text-truncate">
+                          {{ item.productTitle }}
+                        </h1>
+                        <p class="mb-2 text-truncate">{{ item.productDesc }}</p>
+                        <p class="mb-2">
+                          <strong>Price:</strong>&#8377;{{ item.productPrice }}
+                        </p>
+                      </div>
+
+                      <!-- quantity inc dec -->
+                      <div class="col-6">
+                        <ul
+                          class="
+                            pagination
+                            d-flex
+                            justify-content-end
+                            set_quantity
+                          "
+                        >
+                          <input
+                            type="number"
+                            [(ngModel)]="item.productQty"
+                            min="1"
+                            max="5"
+                            (ngModelChange)="
+                              productTotal(
+                                $event,
+                                item.productPrice,
+                                item.productId
+                              )
+                            "
+                            [ngModelOptions]="{ standalone: true }"
+                          />
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary mb-3 mx-4">
+                Next
+              </button>
+              <button type="button" class="btn btn-danger mb-3" (click)="homePage()">
+                Cancel
+              </button>
+            </form>
+          </div>
+
+          <!-- shipping form -->
+
+          <div
+            class="col-md-12 col-lg-8 col-11 mx-auto mb-lg-0 mb-5 shadow"
+            *ngIf="process == 2"
+          >
+            <app-shipping
+              (process)="onShipping($event)"
+              (shipping)="onPaidShipping($event)"
+              (cartPage) = "BackToCart($event)"
+
+            ></app-shipping>
+          </div>
+
+          <!-- payment section -->
+
+          <div
+            class="col-md-12 col-lg-8 col-11 mx-auto mb-lg-0 mb-5 shadow"
+            *ngIf="process == 3"
+          >
+            <app-payment></app-payment>
+          </div>
+
+          <!-- right side -->
+
+          <div class="col-md-12 col-lg-4 col-11 mx-auto mt-lg-0 mt-md-5">
+            <div class="right_summary p-3 shadow bg-white">
+              <h2 class="product_name mb-5">Summary</h2>
+
+              <div *ngIf="process == 2 || process == 3">
+                <div
+                  class="cartSum mb-4"
+                  *ngFor="let item of product; let i = index"
+                >
+                  <div
+                    class="
+                      col-md-5 col-11
+                      mx-auto
+                      bg-light
+                      d-flex
+                      justify-content-center
+                      align-items-center
+                    "
+                  >
+                    <img
+                      src="{{ item.productImage }}"
+                      class="img-fluid"
+                      alt="cart_image"
+                      style="width: 6vw; height: 8vh"
+                    />
+                  </div>
+                  <h3 class="mb-4 product_name text-truncate">
+                    {{ item.productTitle }}
+                  </h3>
+                  <p class="mb-2 text-truncate">{{ item.productDesc }}</p>
+                  <p class="mb-2">
+                    <strong>Price:</strong>&#8377;{{ item.productPrice }}
+                  </p>
+                </div>
+              </div>
+
+              <!-- Coupon -->
+
+              <div class="coupon d-flex mb-3">
+                <input
+                  type="text"
+                  name=""
+                  id="discount_code"
+                  class="from-control font-weight-bold"
+                  placeholder="Enter Coupon Code"
+                  [(ngModel)]="coupon"
+                />
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  (click)="couponCode()"
+                >
+                  Apply
+                </button>               
+              </div>
+              <p class="text-primary"><strong>{{value}}</strong></p>
+
+              <div class="price_indiv d-flex justify-content-between">
+                <p>SUBTOTAL</p>
+                <p><span>&#8377;</span>{{ subTotal }}</p>
+              </div>
+              <div class="price_indiv d-flex justify-content-between">
+                <p>SHIPPING</p>
+                <p>{{ shipping }}</p>
+              </div>
+              <div class="price_indiv d-flex justify-content-between">
+                <p>TAXES</p>
+                <p><span>&#8377;</span>{{ taxPrice }}</p>
+              </div>
+              <hr />
+              <div
+                class="
+                  total-amt
+                  d-flex
+                  justify-content-between
+                  font-weight-bold
+                "
+              >
+                <h4>TOTAL</h4>
+                <p><span id="total_Cart_amt">&#8377;</span>{{ totalPrice }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

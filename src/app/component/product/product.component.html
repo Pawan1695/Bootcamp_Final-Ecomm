@@ -1,0 +1,52 @@
+<div class="container mb-5">
+    
+        <div class="wrap-1">
+    <div class="row">
+        <div class="col-md-12 col-xs-12">
+           <div class="tagline ">
+                <h2>Great stores. Great choices.</h2>
+                 <hr style="width: 50%; ">
+          </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-xs-12">
+            <div class="form-group d-flex justify-content-center  mt-5 prodSearch">
+                <input type="text" class="form-control" [(ngModel)]="searchValue" (keyup)="search($event)" placeholder="search products">
+                
+                <button class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+    
+    <div class="wrap-2">
+        <div class="row d-flex justify-content-center">
+            <ng-container *ngFor="let item of products">
+                <div class="card col-md-3 col-xs-12 shadow">
+                    <!-- <a routerLink="/product-detail"> -->
+                        <img src="{{item.image}}" alt="" (click)="onSelect(item)">
+                    <!-- </a> -->
+                    <h4 class="d-inline-block text-truncate" (click)="onSelect(item)">
+                        <!-- <a routerLink="/product-detail" style="text-decoration: none;"> -->
+                            {{ item.title}}
+                        <!-- </a> -->
+                    </h4>
+                    <p class="d-inline-block text-truncate">{{ item.description }}</p>
+                    <p><span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span></p>
+                    <p><strong>Price:</strong>&#8377;{{item.price}}</p>
+                    <button  class="btn btn-primary desk_view" (click)="addtoCart(item)">Add To Cart</button>
+                    <button  class="btn btn-primary mobile_view" (click)="addtoCart(item)">Add To Cart</button>
+                </div>
+            </ng-container>
+
+
+            
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,75 @@
+<div class="container shadow">
+  <div class="center">
+    <h2>Continue Shopping</h2>
+    <button class="btn btn-primary mb-3" routerLink="/home" (click) = "changeCart()">SHOP NOW</button>
+  </div>
+  <div class="card empty">
+    <h2 class="card-title">Order Conformed</h2>
+    <hr />
+
+    <table class="table table-responsive">
+      <!-- Cart List -->
+
+      <h3>Cart Details</h3>
+      
+        <tr>
+          <th>Product Id</th>
+          <th>Product Title</th>
+          <th>Product Price</th>
+          <th>Product Quantity</th>
+          <th>Product Color</th>
+         
+        </tr>
+        <tr *ngFor="let product of productList">
+          <td>{{ product.productId }}</td>
+          <td>{{ product.productTitle }}</td>
+          <td>{{ product.productPrice }}</td>
+          <td>{{ product.productQty }}</td>
+          <td>{{ product.color }}</td>
+        </tr>
+     
+    </table>
+
+    <table class="table table-responsive">
+      <!-- Shipping Details -->
+      <h3>Shipping Details</h3>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Address</th>
+        <th>Country</th>
+        <th>City</th>
+        <th>Zip/Pin Code</th>
+        <th>Phone</th>
+      </tr>
+
+      <tr>
+        <td>{{ shippingDetails.first }}</td>
+        <td>{{ shippingDetails.last }}</td>
+        <td>{{ shippingDetails.address }}</td>
+        <td>{{ shippingDetails.country }}</td>
+        <td>{{ shippingDetails.city }}</td>
+        <td>{{ shippingDetails.zip }}</td>
+        <td>{{ shippingDetails.phone }}</td>
+      </tr>
+    </table>
+
+    <table class="table table-responsive">
+      <!-- Payment Details -->
+      <h3>Payment Details</h3>
+      <tr>
+        <th>Payment Mode</th>
+        <th>Holder Name</th>
+        <th>Total Amount</th>
+        
+      </tr>
+
+      <tr>
+        <td>{{ paymentDetails.pay }}</td>
+        <td>{{ paymentDetails.username }}</td>
+        <td>{{ finalPrice }}</td> 
+      </tr>
+    </table>
+
+  </div>
+</div>
