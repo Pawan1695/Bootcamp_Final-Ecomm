@@ -24,20 +24,8 @@ export class ProductComponent implements OnInit {
   ngOnInit(): void {
     
     this.productListing();
-    this.debouncingSearch()
-  
-  }
 
-// product listing / home page
-   productListing(){
-    this.api.getProduct().subscribe((res) => {
-      this.item = res;
-    })
-  }
-
-  // Debouncing search
-  debouncingSearch(){
-    this.results.pipe(debounceTime(1000)).subscribe(() => {
+    this.results.pipe(debounceTime(100)).subscribe(() => {
       this.res =  this.products.filter(el => el.title.toLowerCase().includes(this.searchValue));
       if(this.searchValue !== ''){
         this.products = this.res
@@ -46,7 +34,17 @@ export class ProductComponent implements OnInit {
       }
     
      })
+  
   }
+
+// product listing / home page
+   productListing(){
+    this.api.getProduct().subscribe((res) => {
+      this.products = res;
+      this.item = res;
+    })
+  }
+
 
 
   // add to cart
