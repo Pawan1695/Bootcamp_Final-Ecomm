@@ -29,9 +29,10 @@ export class PaymentComponent implements OnInit {
   ngOnInit(): void {
     this.paymentDetails = new FormGroup({
       pay: new FormControl('creditCard', Validators.required),
-      cardNumber: new FormControl('', Validators.required),
-      expMonth: new FormControl('', Validators.required),
-      cvv: new FormControl('', Validators.required),
+      cardNumber: new FormControl('',[Validators.required, Validators.minLength(16), Validators.min(1111111111111111), Validators.max(9999999999999999)]),
+      expMonth: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(2), Validators.min(1), Validators.max(12)]),
+      expYear : new FormControl('',[Validators.required, Validators.minLength(4), Validators.maxLength(4), Validators.min(1111), Validators.max(9999)]),
+      cvv: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(3), Validators.min(111), Validators.max(999)]),
       username: new FormControl('', Validators.required),
     });
   }
